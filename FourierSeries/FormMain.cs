@@ -24,6 +24,11 @@ namespace FourierSeries {
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.UserPaint, true);
 
+            this.Paint += (o, e) => {
+                try {
+                    RenderCircles(o, e);
+                } catch { }
+            };
             this.Resize += (o, e) => SetupParams();
             ButtonApply.Click += (o, e) => CreateCircles();
 
@@ -48,8 +53,8 @@ namespace FourierSeries {
                                                 120,
                                                 TextBoxMultiplier.Text,
                                                 TextBoxFactor.Text,
-                                                i));
-                        }  catch(Exception ex) {
+                                                i + 1));
+                        } catch(Exception ex) {
                             MessageBox.Show(ex.Message);
                             return;
                         }

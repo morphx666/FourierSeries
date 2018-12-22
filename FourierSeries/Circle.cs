@@ -28,8 +28,7 @@ namespace FourierSeries {
             pointDiameter = 8;
 
             try {
-                Evaluator evMultiplier = new Evaluator();
-                evMultiplier.Formula = multiplier;
+                Evaluator evMultiplier = new Evaluator { Formula = multiplier };
                 evMultiplier.CustomParameters.Add("i", index);
                 Multiplier = (float)evMultiplier.Evaluate();
             } catch(Exception ex) {
@@ -37,11 +36,10 @@ namespace FourierSeries {
             }
 
             try {
-                Evaluator evFactor = new Evaluator();
+                Evaluator evFactor = new Evaluator { Formula = factor };
                 evFactor.CustomParameters.Add("Diameter", Diameter);
                 evFactor.CustomParameters.Add("Multiplier", Multiplier);
                 evFactor.CustomParameters.Add("i", index);
-                evFactor.Formula = factor;
 
                 r = (float)Math.Abs(evFactor.Evaluate());
             } catch(Exception ex) {
