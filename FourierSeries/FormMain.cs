@@ -53,7 +53,7 @@ namespace FourierSeries {
                                                 120,
                                                 TextBoxMultiplier.Text,
                                                 TextBoxFactor.Text,
-                                                i + 1));
+                                                i));
                         } catch(Exception ex) {
                             MessageBox.Show(ex.Message);
                             return;
