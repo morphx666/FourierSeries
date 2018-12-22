@@ -16,6 +16,7 @@ namespace FourierSeries {
         private float angle = 0;
         private int waveMaxPoints;
         private float xOffset;
+        private float angleStep;
 
         public FormMain() {
             InitializeComponent();
@@ -23,6 +24,10 @@ namespace FourierSeries {
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.UserPaint, true);
+
+            foreach(Control ctrl in this.Controls) {
+                if(ctrl is TextBox) ((TextBox)ctrl).KeyDown += (object sender, KeyEventArgs e) => { if(e.KeyCode == Keys.Enter) CreateCircles(); };
+            }
 
             this.Paint += (o, e) => {
                 try {
@@ -74,6 +79,7 @@ namespace FourierSeries {
             cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
             xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
             waveMaxPoints = this.DisplayRectangle.Width;
+            if(!float.TryParse(TextBoxAngleStep.Text, out angleStep)) angleStep = 0.1f;
         }
 
         private void RenderCircles(object sender, PaintEventArgs e) {
@@ -94,7 +100,7 @@ namespace FourierSeries {
 
                     lastPoint = c.Point;
                 }
-                angle += 0.1f;
+                angle += angleStep;
 
                 if(!float.IsNaN(lastPoint.Y)) wave.Insert(0, lastPoint.Y);
                 if(wave.Count >= waveMaxPoints) wave.RemoveAt(waveMaxPoints - 1);
