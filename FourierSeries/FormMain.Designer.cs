@@ -30,6 +30,8 @@
             this.TextBoxMultiplier = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TextBoxFactor = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TextBoxDiameter = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LabelTerms
@@ -61,17 +63,17 @@
             this.ButtonApply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.OrangeRed;
             this.ButtonApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
             this.ButtonApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonApply.Location = new System.Drawing.Point(91, 108);
+            this.ButtonApply.Location = new System.Drawing.Point(91, 140);
             this.ButtonApply.Name = "ButtonApply";
             this.ButtonApply.Size = new System.Drawing.Size(75, 31);
-            this.ButtonApply.TabIndex = 2;
+            this.ButtonApply.TabIndex = 0;
             this.ButtonApply.Text = "Apply";
             this.ButtonApply.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 45);
+            this.label1.Location = new System.Drawing.Point(12, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 0;
@@ -85,17 +87,17 @@
             this.TextBoxMultiplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBoxMultiplier.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMultiplier.ForeColor = System.Drawing.Color.Gainsboro;
-            this.TextBoxMultiplier.Location = new System.Drawing.Point(91, 44);
+            this.TextBoxMultiplier.Location = new System.Drawing.Point(91, 76);
             this.TextBoxMultiplier.Name = "TextBoxMultiplier";
             this.TextBoxMultiplier.Size = new System.Drawing.Size(964, 26);
-            this.TextBoxMultiplier.TabIndex = 1;
+            this.TextBoxMultiplier.TabIndex = 3;
             this.TextBoxMultiplier.Text = "2 * i + 1";
             this.TextBoxMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 77);
+            this.label2.Location = new System.Drawing.Point(12, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 20);
             this.label2.TabIndex = 0;
@@ -109,12 +111,34 @@
             this.TextBoxFactor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBoxFactor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxFactor.ForeColor = System.Drawing.Color.Gainsboro;
-            this.TextBoxFactor.Location = new System.Drawing.Point(91, 76);
+            this.TextBoxFactor.Location = new System.Drawing.Point(91, 108);
             this.TextBoxFactor.Name = "TextBoxFactor";
             this.TextBoxFactor.Size = new System.Drawing.Size(964, 26);
-            this.TextBoxFactor.TabIndex = 1;
+            this.TextBoxFactor.TabIndex = 4;
             this.TextBoxFactor.Text = "4 * (Diameter / 2) / (Multiplier * Pi)";
             this.TextBoxFactor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Diameter";
+            // 
+            // TextBoxDiameter
+            // 
+            this.TextBoxDiameter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(99)))), ((int)(((byte)(99)))));
+            this.TextBoxDiameter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextBoxDiameter.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDiameter.ForeColor = System.Drawing.Color.Gainsboro;
+            this.TextBoxDiameter.Location = new System.Drawing.Point(91, 44);
+            this.TextBoxDiameter.Name = "TextBoxDiameter";
+            this.TextBoxDiameter.Size = new System.Drawing.Size(62, 26);
+            this.TextBoxDiameter.TabIndex = 2;
+            this.TextBoxDiameter.Text = "120";
+            this.TextBoxDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // FormMain
             // 
@@ -126,7 +150,9 @@
             this.Controls.Add(this.TextBoxFactor);
             this.Controls.Add(this.TextBoxMultiplier);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.TextBoxDiameter);
             this.Controls.Add(this.TextBoxTerms);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LabelTerms);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,6 +176,8 @@
         private System.Windows.Forms.TextBox TextBoxMultiplier;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TextBoxFactor;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TextBoxDiameter;
     }
 }
 

@@ -50,7 +50,7 @@ namespace FourierSeries {
                     for(int i = 0; i < nt; i++) {
                         try {
                             cs.Add(new Circle(new PointF(0, 0),
-                                                120,
+                                                float.Parse(TextBoxDiameter.Text),
                                                 TextBoxMultiplier.Text,
                                                 TextBoxFactor.Text,
                                                 i));
@@ -74,9 +74,6 @@ namespace FourierSeries {
             cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
             xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
             waveMaxPoints = this.DisplayRectangle.Width;
-            if(xOffset > waveMaxPoints) {
-                MessageBox.Show($"xOffset: {xOffset}", "Invalid Parameters", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void RenderCircles(object sender, PaintEventArgs e) {
