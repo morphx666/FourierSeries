@@ -55,7 +55,7 @@ namespace FourierSeries {
                                                 TextBoxFactor.Text,
                                                 i));
                         } catch(Exception ex) {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(ex.Message, "Invalid Parameters", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         if(i > 0) {
@@ -67,8 +67,6 @@ namespace FourierSeries {
                 } else {
                     TextBoxTerms.Text = "7";
                 }
-
-                SetupParams();
             }
         }
 
@@ -76,6 +74,9 @@ namespace FourierSeries {
             cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
             xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
             waveMaxPoints = this.DisplayRectangle.Width;
+            if(xOffset > waveMaxPoints) {
+                MessageBox.Show($"xOffset: {xOffset}", "Invalid Parameters", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void RenderCircles(object sender, PaintEventArgs e) {
@@ -98,7 +99,7 @@ namespace FourierSeries {
                 }
                 angle += 0.1f;
 
-                wave.Insert(0, lastPoint.Y);
+                if(!float.IsNaN(lastPoint.Y)) wave.Insert(0, lastPoint.Y);
                 if(wave.Count >= waveMaxPoints) wave.RemoveAt(waveMaxPoints - 1);
                 for(int x = wave.Count - 1; x > 0; x--) {
                     g.DrawLine(Pens.White, x + xOffset, wave[x], x - 1 + xOffset, wave[x - 1]);
