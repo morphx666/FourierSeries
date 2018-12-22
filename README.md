@@ -7,7 +7,7 @@ Parameters:
 
 - **Terms**: The number of terms used to generate the signal in the Fourier series
 - **i**: Is a value that goes from 0 to the number of Terms - 1 (used to generate the Multiplier)
-- **Diameter**: At this time, this is a hardcoded value of 120 (pixels)
+- **Diameter**: This is the diameter (in pixels) of the first circle
 - **Multiplier**: This is the value that controls the rate of change of the angle
 - **Factor**: This is the value that gets multiplied when converting from polar (radius/angle) to rectangular (x,y) coordinates
 
