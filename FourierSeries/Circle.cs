@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FourierSeries {
+    public class Circle {
+        private float r;
+        private PointF point;
+        private float pointDiameter;
+
+        public string Factor { get; }
+        public float Multiplier { get; }
+        public float Diameter { get; }
+        public PointF Center { get; set; }
+
+        public PointF Point {
+            get { return point; }
+        }
+
+        public Circle(PointF center, float diameter, string multiplier, string factor, int index) {
+            Center = center;
+            Diameter = diameter;
+            Factor = factor;
+
+            pointDiameter = 8;
+
+            try {
+                Evaluator evMultiplier = new Evaluator();
+                evMultiplier.Formula = multiplier;
+                evMultiplier.CustomParameters.Add("i", index);
+                Multiplier = (float)evMultiplier.Evaluate();
+            } catch(Exception ex) {
+                throw new ArgumentException(ex.Message, "multiplier");
+            }
+
+            try {
+                Evaluator evFactor = new Evaluator();
+                evFactor.CustomParameters.Add("Diameter", Diameter);
+                evFactor.CustomParameters.Add("Multiplier", Multiplier);
+                evFactor.CustomParameters.Add("i", index);
+                evFactor.Formula = factor;
+
+                r = (float)Math.Abs(evFactor.Evaluate());
+            } catch(Exception ex) {
+                throw new ArgumentException(ex.Message, "factor");
+            }
+
+            //r = 4 * (Diameter / 2) / (Multiplier * (float)Math.PI);
+            Diameter = 2 * r;
+            Step(0);
+        }
+
+        public void Step(float angle) {
+            point.X = Center.X + r * (float)Math.Cos(Multiplier * angle);
+            point.Y = Center.Y + r * (float)Math.Sin(Multiplier * angle);
+        }
+
+        public void Render(Graphics g) {
+            g.DrawEllipse(Pens.White, Center.X - r, Center.Y - r, Diameter, Diameter);
+            g.FillEllipse(Brushes.Red, point.X - pointDiameter / 2, point.Y - pointDiameter / 2, pointDiameter, pointDiameter);
+            g.DrawLine(Pens.DarkGray, Center, point);
+        }
+    }
+}
