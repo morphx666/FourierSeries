@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             this.LabelTerms = new System.Windows.Forms.Label();
             this.TextBoxTerms = new System.Windows.Forms.TextBox();
-            this.ButtonApply = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TextBoxMultiplier = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,6 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TextBoxAngleStep = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.CheckBoxAutoAlign = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // LabelTerms
@@ -60,20 +60,6 @@
             this.TextBoxTerms.Text = "7";
             this.TextBoxTerms.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ButtonApply
-            // 
-            this.ButtonApply.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.ButtonApply.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.ButtonApply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.OrangeRed;
-            this.ButtonApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.ButtonApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonApply.Location = new System.Drawing.Point(100, 172);
-            this.ButtonApply.Name = "ButtonApply";
-            this.ButtonApply.Size = new System.Drawing.Size(75, 31);
-            this.ButtonApply.TabIndex = 0;
-            this.ButtonApply.Text = "Apply";
-            this.ButtonApply.UseVisualStyleBackColor = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -93,8 +79,8 @@
             this.TextBoxMultiplier.ForeColor = System.Drawing.Color.Gainsboro;
             this.TextBoxMultiplier.Location = new System.Drawing.Point(100, 108);
             this.TextBoxMultiplier.Name = "TextBoxMultiplier";
-            this.TextBoxMultiplier.Size = new System.Drawing.Size(964, 26);
-            this.TextBoxMultiplier.TabIndex = 3;
+            this.TextBoxMultiplier.Size = new System.Drawing.Size(955, 26);
+            this.TextBoxMultiplier.TabIndex = 4;
             this.TextBoxMultiplier.Text = "2 * i + 1";
             this.TextBoxMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -117,8 +103,8 @@
             this.TextBoxFactor.ForeColor = System.Drawing.Color.Gainsboro;
             this.TextBoxFactor.Location = new System.Drawing.Point(100, 140);
             this.TextBoxFactor.Name = "TextBoxFactor";
-            this.TextBoxFactor.Size = new System.Drawing.Size(964, 26);
-            this.TextBoxFactor.TabIndex = 4;
+            this.TextBoxFactor.Size = new System.Drawing.Size(955, 26);
+            this.TextBoxFactor.TabIndex = 5;
             this.TextBoxFactor.Text = "4 * (Diameter / 2) / (Multiplier * Pi)";
             this.TextBoxFactor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -172,7 +158,7 @@
             this.TextBoxAngleStep.Location = new System.Drawing.Point(100, 76);
             this.TextBoxAngleStep.Name = "TextBoxAngleStep";
             this.TextBoxAngleStep.Size = new System.Drawing.Size(62, 26);
-            this.TextBoxAngleStep.TabIndex = 2;
+            this.TextBoxAngleStep.TabIndex = 3;
             this.TextBoxAngleStep.Text = "0.1";
             this.TextBoxAngleStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -186,15 +172,25 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "(Frequency)";
             // 
+            // CheckBoxAutoAlign
+            // 
+            this.CheckBoxAutoAlign.AutoSize = true;
+            this.CheckBoxAutoAlign.Location = new System.Drawing.Point(100, 177);
+            this.CheckBoxAutoAlign.Name = "CheckBoxAutoAlign";
+            this.CheckBoxAutoAlign.Size = new System.Drawing.Size(99, 24);
+            this.CheckBoxAutoAlign.TabIndex = 0;
+            this.CheckBoxAutoAlign.Text = "Auto Align";
+            this.CheckBoxAutoAlign.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(1067, 692);
+            this.Controls.Add(this.CheckBoxAutoAlign);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.ButtonApply);
             this.Controls.Add(this.TextBoxFactor);
             this.Controls.Add(this.TextBoxMultiplier);
             this.Controls.Add(this.label2);
@@ -221,7 +217,6 @@
 
         private System.Windows.Forms.Label LabelTerms;
         private System.Windows.Forms.TextBox TextBoxTerms;
-        private System.Windows.Forms.Button ButtonApply;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextBoxMultiplier;
         private System.Windows.Forms.Label label2;
@@ -232,6 +227,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TextBoxAngleStep;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox CheckBoxAutoAlign;
     }
 }
 

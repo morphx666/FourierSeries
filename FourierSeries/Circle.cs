@@ -59,7 +59,7 @@ namespace FourierSeries {
         public void Render(Graphics g) {
             g.DrawEllipse(Pens.White, Center.X - r, Center.Y - r, Diameter, Diameter);
             g.FillEllipse(Brushes.Red, point.X - pointDiameter / 2, point.Y - pointDiameter / 2, pointDiameter, pointDiameter);
-            g.DrawLine(Pens.DarkGray, Center, point);
+            g.DrawLine(Pens.DimGray, Center, point);
         }
     }
 }

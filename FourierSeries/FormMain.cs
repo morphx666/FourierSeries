@@ -26,7 +26,11 @@ namespace FourierSeries {
             this.SetStyle(ControlStyles.UserPaint, true);
 
             foreach(Control ctrl in this.Controls) {
-                if(ctrl is TextBox) ((TextBox)ctrl).KeyDown += (object sender, KeyEventArgs e) => { if(e.KeyCode == Keys.Enter) CreateCircles(); };
+                if(ctrl is TextBox) {
+                    ((TextBox)ctrl).KeyDown += (object sender, KeyEventArgs e) => { if(e.KeyCode == Keys.Enter) CreateCircles(); };
+                } else if(ctrl is CheckBox) {
+                    ((CheckBox)ctrl).Click += (o, e) => CreateCircles();
+                }
             }
 
             this.Paint += (o, e) => {
@@ -35,7 +39,6 @@ namespace FourierSeries {
                 } catch { }
             };
             this.Resize += (o, e) => SetupParams();
-            ButtonApply.Click += (o, e) => CreateCircles();
 
             CreateCircles();
 
@@ -76,7 +79,11 @@ namespace FourierSeries {
         }
 
         private void SetupParams() {
-            cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
+            if(!CheckBoxAutoAlign.Checked) {
+                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs[0].Diameter / 2 + 10, 0);
+            } else {
+                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
+            }
             xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
             waveMaxPoints = this.DisplayRectangle.Width;
             if(!float.TryParse(TextBoxAngleStep.Text, out angleStep)) angleStep = 0.1f;
@@ -107,7 +114,7 @@ namespace FourierSeries {
                 for(int x = wave.Count - 1; x > 0; x--) {
                     g.DrawLine(Pens.White, x + xOffset, wave[x], x - 1 + xOffset, wave[x - 1]);
                 }
-                g.DrawLine(Pens.DarkGray, cs.Last().Point.X, cs.Last().Point.Y, xOffset, lastPoint.Y);
+                g.DrawLine(Pens.DimGray, cs.Last().Point.X, cs.Last().Point.Y, xOffset, lastPoint.Y);
                 g.FillEllipse(Brushes.Red, xOffset - 4, lastPoint.Y - 4, 8, 8);
             }
         }
