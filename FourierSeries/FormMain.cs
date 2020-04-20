@@ -16,7 +16,6 @@ namespace FourierSeries {
         private float angleStep;
         private Region clipRegion;
         private SolidBrush crBrush = new SolidBrush(Color.FromArgb(44, 44, 44));
-        private SizeF circlesArea;
         private int xOffset;
 
         private int ps = 4;
@@ -82,43 +81,49 @@ namespace FourierSeries {
             }
         }
 
-        private SizeF SetCirclesArea() {
+        private RectangleF SetCirclesArea() {
             float xmin = float.MaxValue;
             float xmax = float.MinValue;
             float ymin = float.MaxValue;
             float ymax = float.MinValue;
             float PI2 = (float)(2.0 * Math.PI);
+            int n = cs.Count;
+            float r = cs[n - 1].Diameter / 2;
 
             cs.ForEach((c) => c.Step(0));
-            for(float a = 0; a < PI2; a += 0.01f) {
-                PointF lastPoint = cs[0].Center;
+            for(float a = 0; a < n * PI2; a += 0.1f) {
+                PointF lastPoint = PointF.Empty;
 
                 foreach(Circle c in cs) {
                     c.Center = lastPoint;
                     c.Step(a);
                     lastPoint = c.Point;
 
-                    xmin = Math.Min(xmin, c.Point.X);
-                    xmax = Math.Max(xmax, c.Point.X);
-                    ymin = Math.Min(ymin, c.Point.Y);
-                    ymax = Math.Max(ymax, c.Point.Y);
+                    xmin = Math.Min(xmin, c.Center.X - c.Diameter / 2);
+                    xmax = Math.Max(xmax, c.Center.X + c.Diameter / 2);
+                    ymin = Math.Min(ymin, c.Center.Y - c.Diameter / 2);
+                    ymax = Math.Max(ymax, c.Center.Y + c.Diameter / 2);
                 }
             }
             cs.ForEach((c) => c.Step(0));
 
-            return new SizeF(xmax - xmin, ymax - ymin);
+            return new RectangleF(xmin, ymin, xmax, ymax);
         }
 
         private void SetupParams() {
             ps2 = 2 * ps;
+            int ps22 = ps2 + 2;
 
-            circlesArea = SetCirclesArea();
-            cs[0].Center = new PointF(-(this.DisplayRectangle.Width - circlesArea.Width) / 2 + (ps2 + 2), 0);
-            clipRegion = new Region(new RectangleF((ps2 + 2),
-                                                   TextBoxFactor.Bottom + (ps2 + 2),
-                                                   this.DisplayRectangle.Width - (ps2 + 2) * 2,
-                                                   this.DisplayRectangle.Height - TextBoxFactor.Bottom - (ps2 + 2) * 2));
-            xOffset = (int)(cs[0].Center.X + circlesArea.Width / 2) + (ps2 + 2) * 4;
+            RectangleF r = new RectangleF(ps22,
+                                    TextBoxFactor.Bottom + ps22,
+                                    this.DisplayRectangle.Width - ps22 * 2,
+                                    this.DisplayRectangle.Height - TextBoxFactor.Bottom - ps22 * 2);
+            clipRegion = new Region(r);
+
+            RectangleF circlesArea = SetCirclesArea();
+            cs[0].Center = new PointF(-r.Width / 2 - circlesArea.X + ps22, 0);
+
+            xOffset = (int)(cs[0].Center.X + circlesArea.Width) + ps22 * 4;
             waveMaxPoints = this.DisplayRectangle.Width;
             if(!float.TryParse(TextBoxAngleStep.Text, out angleStep)) angleStep = 0.1f;
         }
