@@ -19,8 +19,8 @@ namespace FourierSeries {
             InitializeComponent();
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.UserPaint, true);
+                          ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.UserPaint, true);
 
             foreach(Control ctrl in this.Controls) {
                 if(ctrl is TextBox) {
@@ -31,7 +31,7 @@ namespace FourierSeries {
             }
 
             this.Paint += (o, e) => {
-                try {
+                try { // Just in case...
                     RenderCircles(o, e);
                 } catch { }
             };
@@ -76,10 +76,13 @@ namespace FourierSeries {
         }
 
         private void SetupParams() {
+            float rs;
             if(!CheckBoxAutoAlign.Checked) {
+                rs = 10;
                 cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs[0].Diameter / 2 + 10, 0);
             } else {
-                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs.Sum((c) => c.Diameter / 2) + 10, 0);
+                rs = cs.Sum((c) => c.Diameter / 2);
+                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + rs + 10, -(rs - cs[0].Diameter / 2));
             }
             xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
             waveMaxPoints = this.DisplayRectangle.Width;
@@ -88,7 +91,8 @@ namespace FourierSeries {
 
         private void RenderCircles(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
-            g.TranslateTransform(this.DisplayRectangle.Width / 2, this.DisplayRectangle.Height / 2);
+            g.TranslateTransform(this.DisplayRectangle.Width / 2,
+                                 this.DisplayRectangle.Height / 2);
             g.ScaleTransform(1, -1);
 
             if(cs.Count == 0) return;

@@ -176,6 +176,8 @@
             // 
             this.CheckBoxAutoAlign.AutoSize = true;
             this.CheckBoxAutoAlign.BackColor = System.Drawing.Color.Transparent;
+            this.CheckBoxAutoAlign.Checked = true;
+            this.CheckBoxAutoAlign.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBoxAutoAlign.Location = new System.Drawing.Point(100, 177);
             this.CheckBoxAutoAlign.Name = "CheckBoxAutoAlign";
             this.CheckBoxAutoAlign.Size = new System.Drawing.Size(99, 24);
