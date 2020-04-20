@@ -28,7 +28,7 @@ namespace FourierSeries {
                 evMultiplier.CustomParameters.Add("i", index);
                 Multiplier = (float)evMultiplier.Evaluate();
             } catch(Exception ex) {
-                throw new ArgumentException(ex.Message, "multiplier");
+                throw new ArgumentException(ex.Message, nameof(multiplier));
             }
 
             try {
@@ -39,7 +39,7 @@ namespace FourierSeries {
 
                 r = (float)Math.Abs(evFactor.Evaluate());
             } catch(Exception ex) {
-                throw new ArgumentException(ex.Message, "factor");
+                throw new ArgumentException(ex.Message, nameof(factor));
             }
 
             //r = 4 * (Diameter / 2) / (Multiplier * (float)Math.PI);

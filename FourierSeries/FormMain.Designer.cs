@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TextBoxAngleStep = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.CheckBoxAutoAlign = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // LabelTerms
@@ -172,26 +171,12 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "(Frequency)";
             // 
-            // CheckBoxAutoAlign
-            // 
-            this.CheckBoxAutoAlign.AutoSize = true;
-            this.CheckBoxAutoAlign.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBoxAutoAlign.Checked = true;
-            this.CheckBoxAutoAlign.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBoxAutoAlign.Location = new System.Drawing.Point(100, 177);
-            this.CheckBoxAutoAlign.Name = "CheckBoxAutoAlign";
-            this.CheckBoxAutoAlign.Size = new System.Drawing.Size(99, 24);
-            this.CheckBoxAutoAlign.TabIndex = 0;
-            this.CheckBoxAutoAlign.Text = "Auto Align";
-            this.CheckBoxAutoAlign.UseVisualStyleBackColor = false;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(1067, 692);
-            this.Controls.Add(this.CheckBoxAutoAlign);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TextBoxFactor);
@@ -230,7 +215,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TextBoxAngleStep;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox CheckBoxAutoAlign;
     }
 }
 

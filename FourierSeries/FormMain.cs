@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -12,8 +13,11 @@ namespace FourierSeries {
         private readonly List<float> wave = new List<float>();
         private float angle = 0;
         private int waveMaxPoints;
-        private float xOffset;
         private float angleStep;
+        private Region clipRegion;
+        private SolidBrush crBrush = new SolidBrush(Color.FromArgb(44, 44, 44));
+        private SizeF circlesArea;
+        private int xOffset;
 
         public FormMain() {
             InitializeComponent();
@@ -75,24 +79,48 @@ namespace FourierSeries {
             }
         }
 
-        private void SetupParams() {
-            float rs;
-            if(!CheckBoxAutoAlign.Checked) {
-                rs = 10;
-                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + cs[0].Diameter / 2 + 10, 0);
-            } else {
-                rs = cs.Sum((c) => c.Diameter / 2);
-                cs[0].Center = new PointF(-this.DisplayRectangle.Width / 2 + rs + 10, -(rs - cs[0].Diameter / 2));
+        private SizeF SetCirclesArea() {
+            float xmin = float.MaxValue;
+            float xmax = float.MinValue;
+            float ymin = float.MaxValue;
+            float ymax = float.MinValue;
+            float PI2 = (float)(2.0 * Math.PI);
+
+            for(float a = 0; a < PI2; a += 0.01f) {
+                PointF lastPoint = cs[0].Center;
+
+                foreach(Circle c in cs) {
+                    c.Center = lastPoint;
+                    c.Step(a);
+                    lastPoint = c.Point;
+
+                    xmin = Math.Min(xmin, c.Point.X);
+                    xmax = Math.Max(xmax, c.Point.X);
+                    ymin = Math.Min(ymin, c.Point.Y);
+                    ymax = Math.Max(ymax, c.Point.Y);
+                }
             }
-            xOffset = cs[0].Center.X + cs.Sum((c) => c.Diameter / 2) + 10;
+            return new SizeF(xmax - xmin, ymax - ymin);
+        }
+
+        private void SetupParams() {
+            circlesArea = SetCirclesArea();
+            cs[0].Center = new PointF(-(this.DisplayRectangle.Width - circlesArea.Width) / 2 + 10, 0);
+            clipRegion = new Region(new RectangleF(10,
+                                                   TextBoxFactor.Bottom + 10,
+                                                   this.DisplayRectangle.Width - 20,
+                                                   this.DisplayRectangle.Height - TextBoxFactor.Bottom - 20));
+            xOffset = (int)(-this.DisplayRectangle.Width / 2 + circlesArea.Width) + 40;
             waveMaxPoints = this.DisplayRectangle.Width;
             if(!float.TryParse(TextBoxAngleStep.Text, out angleStep)) angleStep = 0.1f;
         }
 
         private void RenderCircles(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
+            g.Clip = clipRegion;
+            g.FillRectangle(crBrush, clipRegion.GetBounds(g));
             g.TranslateTransform(this.DisplayRectangle.Width / 2,
-                                 this.DisplayRectangle.Height / 2);
+                                 TextBoxFactor.Bottom + (this.DisplayRectangle.Height - TextBoxFactor.Bottom) / 2);
             g.ScaleTransform(1, -1);
 
             if(cs.Count == 0) return;
@@ -115,7 +143,8 @@ namespace FourierSeries {
                 for(int x = wave.Count - 1; x > 0; x--) {
                     g.DrawLine(Pens.White, x + xOffset, wave[x], x - 1 + xOffset, wave[x - 1]);
                 }
-                g.DrawLine(Pens.DimGray, cs.Last().Point.X, cs.Last().Point.Y, xOffset, lastPoint.Y);
+                g.DrawLine(Pens.DimGray, cs.Last().Point.X, cs.Last().Point.Y,
+                                         xOffset, lastPoint.Y);
                 g.FillEllipse(Brushes.Red, xOffset - 4, lastPoint.Y - 4, 8, 8);
             }
         }
