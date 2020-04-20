@@ -21,6 +21,8 @@ namespace FourierSeries {
         private int ps = 4;
         private int ps2;
 
+        private AutoResetEvent ev = new AutoResetEvent(false);
+
         public FormMain() {
             InitializeComponent();
 
@@ -47,7 +49,7 @@ namespace FourierSeries {
 
             Task.Run(() => {
                 while(true) {
-                    Thread.Sleep(33);
+                    ev.WaitOne(15);
                     this.Invalidate();
                 }
             });
@@ -91,7 +93,8 @@ namespace FourierSeries {
             float r = cs[n - 1].Diameter / 2;
 
             cs.ForEach((c) => c.Step(0));
-            for(float a = 0; a < n * PI2; a += 0.1f) {
+            // FIXME: Try to run determine the period of the series
+            for(float a = 0; a < 100 * n * PI2; a += 0.2f) { // This fails for very long periods
                 PointF lastPoint = PointF.Empty;
 
                 foreach(Circle c in cs) {

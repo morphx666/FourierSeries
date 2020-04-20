@@ -158,7 +158,7 @@
             this.TextBoxAngleStep.Name = "TextBoxAngleStep";
             this.TextBoxAngleStep.Size = new System.Drawing.Size(62, 26);
             this.TextBoxAngleStep.TabIndex = 3;
-            this.TextBoxAngleStep.Text = "0.1";
+            this.TextBoxAngleStep.Text = "0.05";
             this.TextBoxAngleStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
