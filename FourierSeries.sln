@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourierSeries", "FourierSeries\FourierSeries.csproj", "{AF6AE3D8-7955-413F-A8B9-B4F6A9CF7907}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourierSeries", "FourierSeries\FourierSeries.csproj", "{C065768D-AC3E-446D-ACED-E6DAB0297E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF6AE3D8-7955-413F-A8B9-B4F6A9CF7907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF6AE3D8-7955-413F-A8B9-B4F6A9CF7907}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF6AE3D8-7955-413F-A8B9-B4F6A9CF7907}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF6AE3D8-7955-413F-A8B9-B4F6A9CF7907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C065768D-AC3E-446D-ACED-E6DAB0297E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C065768D-AC3E-446D-ACED-E6DAB0297E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C065768D-AC3E-446D-ACED-E6DAB0297E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C065768D-AC3E-446D-ACED-E6DAB0297E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {97774A8E-5E86-41DA-8A4B-AB1982214EBC}
+		SolutionGuid = {F1F3D9FB-3830-44CC-AA66-BAA0391B1058}
 	EndGlobalSection
 EndGlobal
