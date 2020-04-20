@@ -127,7 +127,7 @@
             this.TextBoxDiameter.Name = "TextBoxDiameter";
             this.TextBoxDiameter.Size = new System.Drawing.Size(62, 26);
             this.TextBoxDiameter.TabIndex = 2;
-            this.TextBoxDiameter.Text = "120";
+            this.TextBoxDiameter.Text = "200";
             this.TextBoxDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
@@ -175,12 +175,13 @@
             // CheckBoxAutoAlign
             // 
             this.CheckBoxAutoAlign.AutoSize = true;
+            this.CheckBoxAutoAlign.BackColor = System.Drawing.Color.Transparent;
             this.CheckBoxAutoAlign.Location = new System.Drawing.Point(100, 177);
             this.CheckBoxAutoAlign.Name = "CheckBoxAutoAlign";
             this.CheckBoxAutoAlign.Size = new System.Drawing.Size(99, 24);
             this.CheckBoxAutoAlign.TabIndex = 0;
             this.CheckBoxAutoAlign.Text = "Auto Align";
-            this.CheckBoxAutoAlign.UseVisualStyleBackColor = true;
+            this.CheckBoxAutoAlign.UseVisualStyleBackColor = false;
             // 
             // FormMain
             // 

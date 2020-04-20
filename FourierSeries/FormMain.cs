@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FourierSeries {
     public partial class FormMain : Form {
-        private List<Circle> cs = new List<Circle>();
-        private List<float> wave = new List<float>();
+        private readonly List<Circle> cs = new List<Circle>();
+        private readonly List<float> wave = new List<float>();
         private float angle = 0;
         private int waveMaxPoints;
         private float xOffset;
@@ -21,9 +18,9 @@ namespace FourierSeries {
         public FormMain() {
             InitializeComponent();
 
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.UserPaint, true);
 
             foreach(Control ctrl in this.Controls) {
                 if(ctrl is TextBox) {
@@ -52,7 +49,7 @@ namespace FourierSeries {
 
         private void CreateCircles() {
             lock(cs) {
-                if(int.TryParse(TextBoxTerms.Text, out int nt)) {
+                if(uint.TryParse(TextBoxTerms.Text, out uint nt)) {
                     cs.Clear();
 
                     for(int i = 0; i < nt; i++) {

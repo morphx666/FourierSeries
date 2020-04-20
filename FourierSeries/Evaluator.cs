@@ -1,9 +1,6 @@
-﻿using System;
+﻿using NCalc;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NCalc;
 
 namespace FourierSeries {
     public class Evaluator {
@@ -13,11 +10,11 @@ namespace FourierSeries {
         public delegate void CustomFunctionDel(string name, FunctionArgs args);
 
         private string mFormula;
-        private Dictionary<String, Double> mCustomParameters = new Dictionary<string, double>();
+        private readonly Dictionary<string, double> mCustomParameters = new Dictionary<string, double>();
         private CustomFunctionDel mCustomFunction;
 
         private Expression exp;
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
         public CustomFunctionDel CustomFunctionHandler {
             get { return mCustomFunction; }
@@ -80,7 +77,7 @@ namespace FourierSeries {
         }
 
         public double Evaluate(double xValue) {
-            if (exp == null) {
+            if(exp == null) {
                 return 0;
             } else {
                 mCustomParameters["x"] = xValue;

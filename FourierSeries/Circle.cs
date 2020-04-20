@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FourierSeries {
     public class Circle {
-        private float r;
+        private readonly float r;
         private PointF point;
-        private float pointDiameter;
+        private readonly float pointDiameter;
 
         public string Factor { get; }
         public float Multiplier { get; }
